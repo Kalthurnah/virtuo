@@ -199,3 +199,43 @@ rentalPrice();
 
 // STEP 2
 
+function newRentalPrice()
+{
+  for (var rental of rentals)
+  {
+    for (var car of cars)
+    {
+      if (rental.carId == car.id)
+      {
+        const date1 = new Date(rental.pickupDate);
+        const date2 = new Date(rental.returnDate);
+        const diff_date = (differenceDate(date1,date2)+1) ;
+
+        var factor=1;
+        if(diff_date>1)
+        {
+          factor=0.90;
+        }
+        if(diff_date>4)
+        {
+          factor=0.70;
+        }
+        if(diff_date>10)
+        {
+          factor=0.50;
+        }
+
+        var price_time = diff_date*car.pricePerDay;
+        var price_distance = rental.distance*car.pricePerKm;
+
+        console.log(`Rental price for ${rental.driver.firstName} ${rental.driver.lastName}:`);
+        var rental_price = (price_distance + price_time)*factor;
+        rental.price = rental_price;
+        console.log(rental_price);
+        break;
+      }
+    }
+  }
+}
+
+newRentalPrice();
