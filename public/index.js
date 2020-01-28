@@ -278,3 +278,27 @@ function newPriceWithOption()
 }
 
 newPriceWithOption();
+
+// STEP 5
+
+function payment()
+{
+  for (var rental of rentals)
+  {
+    for (var actor of actors)
+    {
+      if (actor.rentalId == rental.id)
+      {
+        actor.payment[0].amount = rental.price;
+        actor.payment[1].amount = rental.price - (rental.commission.insurance+rental.commission.treasury+rental.commission.virtuo);
+        actor.payment[2].amount = rental.commission.insurance;
+        actor.payment[3].amount = rental.commission.treasury;
+        actor.payment[4].amount = rental.commission.virtuo;
+      
+      }
+    }
+  }
+}
+console.log(actors)
+
+payment();
