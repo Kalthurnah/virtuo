@@ -182,12 +182,13 @@ function rentalPrice()
         const date1 = new Date(rental.pickupDate);
         const date2 = new Date(rental.returnDate);
 
-        var price_time = differenceDate(date1,date2)*car.pricePerDay
+        var price_time = (differenceDate(date1,date2)+1)*car.pricePerDay
         var price_distance = rental.distance*car.pricePerKm
 
         console.log(`Rental price for ${rental.driver.firstName} ${rental.driver.lastName}:`);
-        var rental_price = price_distance + price_time
-        console.log(rental_price)
+        var rental_price = price_distance + price_time;
+        rental.price = rental_price;
+        console.log(rental_price);
         break;
       }
     }
