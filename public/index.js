@@ -239,3 +239,23 @@ function newRentalPrice()
 }
 
 newRentalPrice();
+
+// STEP 3
+
+function commissionRepartition()
+{
+  for (var rental of rentals)
+  {
+    const date1 = new Date(rental.pickupDate);
+    const date2 = new Date(rental.returnDate);
+    const diff_date = (differenceDate(date1,date2)+1) ;
+
+    rental.commission.insurance = rental.price * 0.30 * 0.50;
+    rental.commission.treasury = 1*diff_date;
+    rental.commission.virtuo = rental.price * 0.30 - rental.commission.insurance - rental.commission.treasury;
+
+  }
+  console.log(rentals);
+}
+
+commissionRepartition();
