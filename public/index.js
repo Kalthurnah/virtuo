@@ -161,3 +161,40 @@ const actors = [{
 console.log(cars);
 console.log(rentals);
 console.log(actors);
+
+
+// STEP 1
+
+function differenceDate(date1, date2)
+{
+  var difference = date2.getTime() - date1.getTime();
+  return difference/(1000*24*60*60);
+}
+
+function rentalPrice()
+{
+  for (var rental of rentals)
+  {
+    for (var car of cars)
+    {
+      if (rental.carId == car.id)
+      {
+        const date1 = new Date(rental.pickupDate);
+        const date2 = new Date(rental.returnDate);
+
+        var price_time = differenceDate(date1,date2)*car.pricePerDay
+        var price_distance = rental.distance*car.pricePerKm
+
+        console.log(`Rental price for ${rental.driver.firstName} ${rental.driver.lastName}:`);
+        var rental_price = price_distance + price_time
+        console.log(rental_price)
+        break;
+      }
+    }
+  }
+}
+
+rentalPrice();
+
+// STEP 2
+
