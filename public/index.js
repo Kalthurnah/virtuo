@@ -229,7 +229,7 @@ function newRentalPrice()
         var price_distance = rental.distance*car.pricePerKm;
 
         console.log(`Rental price for ${rental.driver.firstName} ${rental.driver.lastName}:`);
-        var rental_price = (price_distance + price_time)*factor;
+        var rental_price = price_distance + price_time*factor;
         rental.price = rental_price;
         console.log(rental_price);
         break;
